@@ -5,4 +5,8 @@ const user = useUserStore()
 user.hydrate()
 </script>
 
-<template></template>
+<template>
+  <main>
+    <RouterView />
+  </main>
+</template>

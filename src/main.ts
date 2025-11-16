@@ -5,9 +5,11 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import { createPinia } from 'pinia'
+import { rotuer } from '@/router'
 
 const app = createApp(App)
 app.use(createPinia())
+app.use(rotuer)
 app.use(PrimeVue, {
   theme: {
     preset: Aura,

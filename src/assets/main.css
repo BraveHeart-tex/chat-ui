@@ -2,3 +2,23 @@
 @import 'tailwindcss-primeui';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: var(--p-surface-0);
+  --foreground: var(--p-content-color);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.dark {
+  --background: var(--p-surface-900);
+  --foreground: var(--p-content-color);
+}
+
+body.dark {
+  background-color: var(--background);
+  color: var(--foreground);
+}
