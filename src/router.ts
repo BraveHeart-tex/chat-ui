@@ -6,6 +6,11 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('./views/LoginView.vue'),
   },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('./views/ChatView.vue'),
+  },
 ]
 
 export const rotuer = createRouter({
