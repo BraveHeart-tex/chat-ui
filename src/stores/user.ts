@@ -1,37 +1,33 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 
-interface UserState {
-  userId: string | null
-  username: string | null
-}
+export const useUserStore = defineStore('user', () => {
+  const userId = ref<string | null>(null)
+  const username = ref<string | null>(null)
 
-export const useUserStore = defineStore('user', {
-  state: (): UserState => ({
-    userId: null,
-    username: null,
-  }),
-  getters: {
-    isLoggedIn: (state) => !!state.userId && !!state.username,
-  },
-  actions: {
-    hydrate() {
-      const raw = localStorage.getItem('user')
-      if (!raw) return
-      const parsed = JSON.parse(raw)
-      this.userId = parsed.userId
-      this.username = parsed.username
-    },
-    setUser(userId: string, username: string) {
-      this.userId = userId
-      this.username = username
-      localStorage.setItem('user', JSON.stringify({ userId, username }))
-    },
-    logout() {
-      this.userId = null
-      this.username = null
-      localStorage.removeItem('user')
-    },
-  },
+  const isLoggedIn = computed(() => !!userId.value && !!username.value)
+
+  function hydrate() {
+    const raw = localStorage.getItem('user')
+    if (!raw) return
+    const parsed = JSON.parse(raw)
+    userId.value = parsed.userId
+    username.value = parsed.username
+  }
+
+  function setUser(newUserId: string, newUsername: string) {
+    userId.value = newUserId
+    username.value = newUsername
+    localStorage.setItem('user', JSON.stringify({ userId: newUserId, username: newUsername }))
+  }
+
+  function logout() {
+    userId.value = null
+    username.value = null
+    localStorage.removeItem('user')
+  }
+
+  return { userId, username, isLoggedIn, hydrate, setUser, logout }
 })
 
 if (import.meta.hot) {
