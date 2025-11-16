@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
+import { useUserStore } from '@/stores/user'
+
+const user = useUserStore()
+user.hydrate()
 </script>
 
-<template>
-  <Button label="Button" class="" />
-</template>
+<template></template>
