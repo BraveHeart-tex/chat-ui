@@ -6,18 +6,14 @@
     ]"
   >
     <Button icon="pi pi-arrow-left" severity="secondary" />
-    <div>{{ conversation?.name ?? 'Chats' }}</div>
+    <div>{{ conversation?.title ?? 'Chats' }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import Button from 'primevue/button'
-
-interface Conversation {
-  id: string
-  name: string
-}
+import type { Conversation } from '@/stores/conversation'
 
 const props = defineProps<{
   conversation?: Conversation

@@ -12,18 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import type { Message } from '@/stores/message'
 import { defineProps } from 'vue'
-
-interface Message {
-  id: string
-  text: string
-  userId: string
-  createdAt: string
-}
 
 const props = defineProps<{
   message: Message
 }>()
 
-const isMine = props.message.userId === 'me'
+const isMine = props.message.senderId === 'me'
 </script>

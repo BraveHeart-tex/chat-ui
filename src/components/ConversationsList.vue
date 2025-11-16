@@ -6,21 +6,13 @@
       class="p-4 border-b border-surface-200 dark:border-surface-700 cursor-pointer hover:bg-surface-200 dark:hover:bg-surface-700"
       @click="$emit('select', conv)"
     >
-      {{ conv.name }}
+      {{ conv.title }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { useConversationsStore } from '@/stores/conversation'
 
-interface Conversation {
-  id: string
-  name: string
-  messages?: unknown[]
-}
-
-const props = defineProps<{
-  conversations: Conversation[]
-}>()
+const conversations = useConversationsStore().conversations
 </script>
