@@ -13,6 +13,10 @@ const loading = ref(false)
 const router = useRouter()
 const userStore = useUserStore()
 
+if (userStore.username && userStore.userId) {
+  router.push('/chat')
+}
+
 async function handleSubmit() {
   error.value = ''
 
